@@ -31,6 +31,22 @@ const token = axios.create({
     }
 });
 
+
+const getData = async(apiUrl, access_token) => {
+    try{
+        const response = await api.get(apiUrl,{
+            headers:{
+                'Authorization':`Bearer ${access_token}`
+            }
+        });
+        return response;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+
 module.exports = {
-    token
+    token,
+    getData
 }

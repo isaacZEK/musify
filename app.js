@@ -16,6 +16,7 @@ const cookieParser = require('cookie-parser');
 const login = require('./src/routes/login.route');
 const auth = require('./src/routes/auth.route');
 const authenticatedUser =require('./src/middlewares/auth_user.middleware');
+const home = require('./src/routes/home.route');
 
 //initial express app
 const express = require('express');
@@ -49,7 +50,12 @@ app.use('/auth', auth);
 /**
  * check user is authenticated
  * **/
+app.use(authenticatedUser);
 
+/**
+ * Home page 
+ * **/
+app.use('/', home);
 
 app.listen(5000, ()=>{
     console.log(`Server is listening at http://localhost:5000`);
